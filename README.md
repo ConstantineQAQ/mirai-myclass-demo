@@ -1,1 +1,0 @@
-# mirai-myclass-demo
