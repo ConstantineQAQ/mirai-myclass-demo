@@ -33,7 +33,7 @@ public class BotSend extends SimpleListenerHost {
 
     //每天早上八点主动给我发送消息
     public void getClassDetilNegativeP(FriendEvent event) {
-        if (dateOfDay.getTime(date) == "08:00") {
+        if (dateOfDay.getTime(date).equals("13:40")) {
             try {
                 event.getBot().getFriend(357208746).sendMessage(dataBaseGet.getDayClass());
                 event.getBot().getFriend(357208746).sendMessage("----------------------" +
