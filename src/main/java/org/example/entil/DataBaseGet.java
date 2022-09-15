@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.Date;
 
 public class DataBaseGet {
-    public String getDayClass() throws Exception {
+    public static String getDayClass() throws Exception {
         //1.注册驱动
         Class.forName("com.mysql.jdbc.Driver");
 
@@ -44,6 +44,41 @@ public class DataBaseGet {
         while (rs.next()) {
             //获取数据
             kebiao = rs.getString(dateOfDay.getWeek(date));
+            sum += kebiao + "\n" + "--------------------------------" + "\n";
+        }
+        return sum;
+    }
+
+
+    public static String getDayClassTomorrow() throws Exception {
+        //1.注册驱动
+        Class.forName("com.mysql.jdbc.Driver");
+
+        //2.获取连接
+        String url = "jdbc:mysql://39.101.78.69:3306/myclass?user=root&password=guiqi308&useUnicode=true&useSSL=false";
+        String username = "root";
+        String password = "guiqi308";
+        Connection connection= DriverManager.getConnection(url, username, password);
+        Date date = new Date();
+        DateOfDay dateOfDay = new DateOfDay();
+
+        String sql = "";
+
+        sql = "select * from mydb2";
+
+        //3.获取pstmt对象
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+
+        //5.执行sql
+        ResultSet rs = pstmt.executeQuery();
+
+
+        //6.处理结果
+        String kebiao = "";
+        String sum = "";
+        while (rs.next()) {
+            //获取数据
+            kebiao = rs.getString(DateOfDay.getWeek_tomorrow());
             sum += kebiao + "\n" + "--------------------------------" + "\n";
         }
         return sum;
